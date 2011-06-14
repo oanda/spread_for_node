@@ -2,7 +2,7 @@ var net = require("net");
 var assert = require('assert'),
     Gently = require('gently');
 
-var notify = require('notification');
+var notify = require('spread');
 
 exports["test missing options"] = function() {
     assert.throws(function() {new notify.SpreadToolkit();},

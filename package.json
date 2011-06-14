@@ -1,0 +1,15 @@
+{
+  "author": "Mark Oosterveld <mark@oosterveld.org>",
+  "name": "spread",
+  "description": "Spread Toolkit",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/abendigo/spread_for_node.git"
+  },
+  "engines": {
+    "node": "v0.4.8"
+  },
+  "dependencies": {},
+  "devDependencies": {"gently"}
+}
