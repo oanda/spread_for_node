@@ -70,7 +70,7 @@ exports["test multiple messages in one chunk"] = function() {
     }.bind(this));
 
     // This is the on connection data
-    var header = new Buffer(11)
+    var header = new Buffer(15)
     var privateGroup = "abcd";
     for (var i = 0; i < 6; i++)
         header[i] = 0;
@@ -78,10 +78,13 @@ exports["test multiple messages in one chunk"] = function() {
     header[ 7] = 4; // major version
     header[ 8] = 1; // minor
     header[ 9] = 0; // patch
-    header[10] = privateGroup.length;
+    header[10] = 4;
+    header[11] = 65;
+    header[12] = 65;
+    header[13] = 65;
+    header[14] = 65;
 
     mySocket.emit('data', header);
-    mySocket.emit('data', privateGroup);
 
     // build a double message (make sure the two messages have different lengths)
     var len = 48 + 32 + 48 + 40;
