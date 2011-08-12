@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="spread-for-node" default="dpkg" basedir="." xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+
+    <property name="repo.dir" value="${user.home}/.m2/repository" />
+    <property name="repo.url" value="http://artifactory.dev.oanda.com:8080/artifactory/repo" />
+    <property name="maven-ant-tasks.dir" value="org/apache/maven/maven-ant-tasks/2.1.0" />
+    <property name="maven-ant-tasks.jar" value="${maven-ant-tasks.dir}/maven-ant-tasks-2.1.0.jar" />
+
+    <!-- Bootstrap the MAven Ant Taks jar -->
+    <mkdir dir="${repo.dir}/${maven-ant-tasks.dir}" />
+    <get src="${repo.url}/${maven-ant-tasks.jar}" dest="${repo.dir}/${maven-ant-tasks.jar}"
+	 skipexisting="true" />
+
+    <!-- JAR repository task declaration -->
+    <path id="maven-ant-tasks.classpath" path="${repo.dir}/${maven-ant-tasks.jar}" />
+    <typedef resource="org/apache/maven/artifact/ant/antlib.xml"
+	     uri="antlib:org.apache.maven.artifact.ant"
+	     classpathref="maven-ant-tasks.classpath" />
+
+    <!-- Define the artifact repository -->
+    <artifact:remoteRepository id="artifactory" url="${repo.url}" />
+	
+    <artifact:dependencies pathId="classpath.tasks">
+    	<dependency groupId="com.oanda.ant-deb" artifactId="ant-deb" version="0.0.1.1"/>
+        <remoterepository refid="artifactory"/>
+    </artifact:dependencies>
+
+    <!-- Debian packaging task declaration -->
+    <taskdef name="dpkg" classname="com.googlecode.ant_deb_task.Deb" classpathref="classpath.tasks"/>
+
+	<target name="dpkg">
+		<exec executable="git" outputproperty="tag.version">
+			<arg value="describe"/>
+			<arg value="--tags"/>
+		</exec>
+		<exec executable="git" outputproperty="tag.version.long">
+			<arg value="describe"/>
+			<arg value="--tags"/>
+			<arg value="--long"/>
+		</exec>
+
+        <dpkg todir="build"
+              package="spread-for-node"
+              version="${tag.version}"
+              section="non-free/web" priority="optional" architecture="all"
+              maintainer="Mark Oosterveld &lt;marko@oanda.com&gt;"
+              preDepends="nodejs"
+              >
+
+            <description synopsis="${package.desc}">
+            $postrm="${output.dir}/postrmed Toolkit Client for Node.js
+            </description>
+
+            <tarfileset dir="." prefix="/oanda/system/lib/node/spread"
+                    username="root" group="root" filemode="444">
+                <include name="package.json" />
+                <include name="index.js" />
+                <include name="lib" />
+            </tarfileset>
+
+            <tarfileset dir="lib" prefix="/oanda/system/lib/node/spread/lib"
+                    username="root" group="root" filemode="444">
+            </tarfileset>
+        </dpkg>
+    </target>
+</project>
