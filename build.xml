@@ -39,7 +39,7 @@
 			<arg value="--long"/>
 		</exec>
 
-        <dpkg todir="build"
+        <dpkg todir="."
               package="spread-for-node"
               version="${tag.version}"
               section="non-free/web" priority="optional" architecture="all"
@@ -55,7 +55,6 @@
                     username="root" group="root" filemode="444">
                 <include name="package.json" />
                 <include name="index.js" />
-                <include name="lib" />
             </tarfileset>
 
             <tarfileset dir="lib" prefix="/oanda/system/lib/node/spread/lib"
