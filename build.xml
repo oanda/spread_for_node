@@ -47,8 +47,8 @@
               preDepends="nodejs"
               >
 
-            <description synopsis="${package.desc}">
-            $postrm="${output.dir}/postrmed Toolkit Client for Node.js
+            <description synopsis="Spread Toolkit Client for Node.js">
+                Spread Toolkit Client for Node.js
             </description>
 
             <tarfileset dir="." prefix="/oanda/system/lib/node/spread"
