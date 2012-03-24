@@ -1,6 +1,6 @@
 var net = require("net");
 var assert = require('assert'),
-    log4js = require('log4js')(),
+    log4js = require('log4js'),
     util = require('util'),
     Gently = require('gently'),
     EventEmitter = require('events').EventEmitter;
