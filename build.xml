@@ -44,7 +44,7 @@
               version="${tag.version}"
               section="non-free/web" priority="optional" architecture="all"
               maintainer="Mark Oosterveld &lt;marko@oanda.com&gt;"
-              preDepends="nodejs"
+              depends="nodejs (>= 0.4.8), log4js (>= 0.3.8)"
               >
 
             <description synopsis="Spread Toolkit Client for Node.js">
