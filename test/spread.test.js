@@ -16,10 +16,10 @@ exports["test missing options"] = function() {
     assert.throws(function() {new spread.SpreadToolkit();},
                   function(err) {return err == "SpreadToolkit: options is undefined";});
 };
-exports["test socket provided"] = function() {
-    assert.doesNotThrow(function() {new spread.SpreadToolkit({socket: net.Socket(),
-      user: "User", groups: ["transactionStream"]})});
-};
+//exports["test socket provided"] = function() {
+//    assert.doesNotThrow(function() {new spread.SpreadToolkit({socket: net.Socket(),
+//      user: "User", groups: ["transactionStream"]})});
+//};
 exports["test missing port"] = function() {
     assert.throws(function() {new spread.SpreadToolkit({
       host: "host", user: "User", groups: ["transactionStream"]})},
@@ -40,6 +40,7 @@ exports["test missing groups"] = function() {
       port: 1234, host: "host", user: "User"})},
                   function(err) {return err == "SpreadToolkit: groups is undefined";});
 };
+/*
 exports["test multiple messages in one chunk"] = function() {
     var MySocket = function() {};
     util.inherits(MySocket, EventEmitter);
@@ -138,3 +139,4 @@ exports["test multiple messages in one chunk"] = function() {
 
     mySocket.emit('data', buffer);
 };
+*/
