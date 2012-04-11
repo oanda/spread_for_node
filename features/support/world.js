@@ -1,4 +1,18 @@
-
+// This method does not exist in 0.4
+if (!Buffer.prototype.writeUInt32BE) {
+    Buffer.prototype.writeUInt32BE = function(value, offset, noAssert) {
+        this[offset] = (value >>> 24) & 0xff;
+        this[offset + 1] = (value >>> 16) & 0xff;
+        this[offset + 2] = (value >>> 8) & 0xff;
+        this[offset + 3] = value & 0xff;
+    };
+}
+if (!Buffer.prototype.fill) {
+    Buffer.prototype.fill = function fill(value, start, end) {
+        for (var i = start; i < end; i++)
+            this[i] = value;
+    };
+}
 
 var World = function World(callback) {
 
