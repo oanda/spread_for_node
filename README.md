@@ -1,4 +1,4 @@
-
+[![Build Status](https://secure.travis-ci.org/[abendigo]/[spread_for_node].png)](http://travis-ci.org/[YOUR_GITHUB_USERNAME]/[YOUR_PROJECT_NAME])
 
 The Spread Toolkit (http://www.spread.org) is a computer software package
 that provides a high performance group communication system that is resilient
