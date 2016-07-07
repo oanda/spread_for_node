@@ -1,4 +1,4 @@
-var spread = require('spread');
+var spread = require('../lib/spread');
 
 var toolkit = spread.SpreadToolkit( {
      port: 9333,
